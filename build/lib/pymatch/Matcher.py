@@ -240,10 +240,17 @@ class Matcher:
         """
         Plots the distribution of propensity scores before matching between
         our test and control groups
+
+        Returns
+        -------
+        fig: a figure of the control vs test distribution
         """
         assert (
             "scores" in self.data.columns
         ), "Propensity scores haven't been calculated, use Matcher.predict_scores()"
+
+        fig, ax = plt.subplots()
+
         sns.distplot(self.data[self.data[self.yvar] == 0].scores, label="Control")
         sns.distplot(self.data[self.data[self.yvar] == 1].scores, label="Test")
         plt.legend(loc="upper right")
@@ -251,6 +258,8 @@ class Matcher:
         plt.title("Propensity Scores Before Matching")
         plt.ylabel("Percentage (%)")
         plt.xlabel("Scores")
+
+        return fig
 
     def prop_test(self, col):
         """
@@ -510,18 +519,23 @@ class Matcher:
 
         Returns
         -------
-        None
+        fig : png file of which threshold to use
 
         """
         results = []
         for i in rng:
             self.match(method=method, nmatches=nmatches, threshold=i)
             results.append(self.prop_retained())
+
+        fig, ax = plt.subplots()
+
         plt.plot(rng, results)
         plt.title("Proportion of Data retained for grid of threshold values")
         plt.ylabel("Proportion Retained")
         plt.xlabel("Threshold")
         plt.xticks(rng)
+
+        return fig
 
     def record_frequency(self):
         """
