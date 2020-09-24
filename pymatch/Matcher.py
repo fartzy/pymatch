@@ -82,7 +82,8 @@ class Matcher:
 
         Returns
         -------
-        None
+        accuracy: double
+            The metric to be returned after it is printed to the screen
         """
         # reset models if refitting
         if len(self.models) > 0:
