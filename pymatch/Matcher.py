@@ -131,7 +131,7 @@ class Matcher:
             avg_accuracy = "\nAverage Accuracy:", "{}%".format(
                 round(np.mean(self.model_accuracy) * 100, 2)
             )
-
+            print(avg_accuracy)
             return avg_accuracy
 
         else:
