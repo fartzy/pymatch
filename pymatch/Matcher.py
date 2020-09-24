@@ -128,9 +128,10 @@ class Matcher:
                     errors = errors + 1  # to avoid infinite loop for misspecified matrix
                     print("Error: {}".format(e))
 
-            avg_accuracy = "\nAverage Accuracy:", "{}%".format(
+            avg_accuracy = "\nAverage Accuracy::", "{}%".format(
                 round(np.mean(self.model_accuracy) * 100, 2)
             )
+
             print(avg_accuracy)
             return avg_accuracy
 
@@ -143,6 +144,7 @@ class Matcher:
             self.models.append(res)
 
             accuracy = "\nAccuracy", round(np.mean(self.model_accuracy[0]) * 100, 2)
+
             print(accuracy)
             return accuracy
 
