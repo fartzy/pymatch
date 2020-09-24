@@ -82,7 +82,8 @@ class Matcher:
 
         Returns
         -------
-        None
+        accuracy: double
+            The metric to be returned after it is printed to the screen
         """
         # reset models if refitting
         if len(self.models) > 0:
@@ -127,12 +128,10 @@ class Matcher:
                 except Exception as e:
                     errors = errors + 1  # to avoid infinite loop for misspecified matrix
                     print("Error: {}".format(e))
+            avg_accuracy = round(np.mean(self.model_accuracy) * 100, 2)
 
-            avg_accuracy = "\nAverage Accuracy::", "{}%".format(
-                round(np.mean(self.model_accuracy) * 100, 2)
-            )
+            print("\nAverage Accuracy: ", "{}%".format(avg_accuracy))
 
-            print(avg_accuracy)
             return avg_accuracy
 
         else:
@@ -143,9 +142,10 @@ class Matcher:
             self.model_accuracy.append(self._scores_to_accuracy(res, self.X, self.y))
             self.models.append(res)
 
-            accuracy = "\nAccuracy", round(np.mean(self.model_accuracy[0]) * 100, 2)
+            accuracy = round(np.mean(self.model_accuracy[0]) * 100, 2)
 
-            print(accuracy)
+            print("\nAccuracy: ", "{}%".format(accuracy))
+
             return accuracy
 
     def predict_scores(self):
