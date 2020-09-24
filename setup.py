@@ -19,8 +19,8 @@ setup(
     description='Matching techniques for Observational Studies',
     author='Ben Miroglio',
     author_email='benmiroglio@gmail.com',
-    url='https://github.com/benmiroglio/pymatch',
-    download_url='https://github.com/benmiroglio/pymatch/archive/{}.tar.gz'.format(VERSION),
+    url='https://github.com/fartzy/pymatch',
+    download_url='https://github.com/fartzy/pymatch/archive/{}.tar.gz'.format(VERSION),
     keywords=['logistic', 'regression', 'matching', 'observational', 'study', 'causal', 'inference'],
     include_package_data=True,
     install_requires=dependencies
