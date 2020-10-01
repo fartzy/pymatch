@@ -249,7 +249,7 @@ class Matcher:
             "scores" in self.data.columns
         ), "Propensity scores haven't been calculated, use Matcher.predict_scores()"
 
-        fig, ax = plt.subplots()
+        fig, _ = plt.subplots()
 
         sns.distplot(self.data[self.data[self.yvar] == 0].scores, label="Control")
         sns.distplot(self.data[self.data[self.yvar] == 1].scores, label="Test")
@@ -527,7 +527,7 @@ class Matcher:
             self.match(method=method, nmatches=nmatches, threshold=i)
             results.append(self.prop_retained())
 
-        fig, ax = plt.subplots()
+        fig, _ = plt.subplots()
 
         plt.plot(rng, results)
         plt.title("Proportion of Data retained for grid of threshold values")
